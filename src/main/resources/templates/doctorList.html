@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Doctores</title>
+    <title>Lista de Doctores</title>
 </head>
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
-<h2>Lista de Doctores</h2>
+<h2>Doctores</h2>
 <table>
+    <thead>
     <tr>
         <th>Nombre</th>
         <th>Especialidad</th>
+        <th>Hospital</th>
+        <th>Acción</th>
     </tr>
+    </thead>
+    <tbody>
     <tr th:each="doctor : ${doctores}">
         <td th:text="${doctor.nombre}"></td>
         <td th:text="${doctor.especialidad}"></td>
+        <td th:text="${doctor.hospital.nombre}"></td>
+        <td>
+            <a th:href="@{'/doctores/' + ${doctor.id} + '/citas'}">
+                <button>Próximas citas</button>
+            </a>
+        </td>
     </tr>
+    </tbody>
 </table>
 </body>
 </html>
