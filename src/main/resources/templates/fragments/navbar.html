@@ -1,7 +1,14 @@
-<nav>
-    <ul>
-        <li><a href="/hospitales">Hospitales</a></li>
-        <li><a href="/doctores">Doctores</a></li>
-        <li><a href="/pacientes">Pacientes</a></li>
-    </ul>
-</nav>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="navbar">
+    <nav>
+        <ul>
+            <li><a th:href="@{/hospitales}">Hospitales</a></li>
+            <li><a th:href="@{/doctores}">Doctores</a></li>
+            <li><a th:href="@{/pacientes}">Pacientes</a></li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>
