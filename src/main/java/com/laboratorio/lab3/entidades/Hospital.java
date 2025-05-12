@@ -3,7 +3,11 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "hospital")
 public class Hospital {
@@ -19,6 +23,13 @@ public class Hospital {
 
     @Column(name = "telefono")
     private String telefono;
+
+    @OneToMany(mappedBy = "hospital")
+    private List<Doctor> doctores;
+
+    @OneToMany(mappedBy = "hospital")
+    private List<Paciente> pacientes;
+
 
 }
 
