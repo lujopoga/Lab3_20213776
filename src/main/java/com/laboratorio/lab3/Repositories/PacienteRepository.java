@@ -1,9 +1,9 @@
-package com.laboratorio.lab3.Repositorys;
+package com.laboratorio.lab3.Repositories;
 
 import com.laboratorio.lab3.entidades.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-@Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
+    List<Paciente> findByHospitalId(Long hospitalId);  // query method automático
 }
