@@ -1,4 +1,4 @@
-package com.laboratorio.lab3.Repositorys;
+package com.laboratorio.lab3.Repositories;
 
 import com.laboratorio.lab3.entidades.Hospital;
 import org.springframework.data.jpa.repository.JpaRepository;
