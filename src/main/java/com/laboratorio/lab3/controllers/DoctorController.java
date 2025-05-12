@@ -1,31 +1,37 @@
 package com.laboratorio.lab3.controllers;
 
-
-import com.laboratorio.lab3.services.DoctorService;
-import org.springframework.ui.Model;
 import com.laboratorio.lab3.entidades.Doctor;
+import com.laboratorio.lab3.entidades.Paciente;
+import com.laboratorio.lab3.Repositories.DoctorRepository;
+import com.laboratorio.lab3.Repositories.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @Controller
 @RequestMapping("/doctores")
 public class DoctorController {
+
     @Autowired
-    private DoctorService doctorService;
+    DoctorRepository doctorRepository;
 
+    @Autowired
+    PacienteRepository pacienteRepository;
 
-    @GetMapping("/doctores")
-    public String getAllDoctors(Model model) {
-        List<Doctor> doctores = doctorService.findAll();
+    @GetMapping("")
+    public String listarDoctores(Model model) {
+        List<Doctor> doctores = doctorRepository.findAll();
         model.addAttribute("doctores", doctores);
-        return "doctores";
+        return "doctorList";
     }
 
-
-
+    @GetMapping("/{id}/citas")
+    public String listarProximasCitas(@PathVariable("id") Long id, Model model) {
+        List<Paciente> citas = pacienteRepository.obtenerPacientesPorDoctor(id);
+        model.addAttribute("citas", citas);
+        return "proximasCitas";
+    }
 }
